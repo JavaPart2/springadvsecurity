@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<html lang="nl" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Welkom</title>
@@ -8,8 +8,12 @@
 <body>
     <h1>Welkom</h1>
     <ul>
-        <li><a th:href="@{/offertes}">Offertes</a></li>
-        <li><a th:href="@{/werknemers}">Werknemers</a></li>
+        <li sec:authorize="isAnonymous()"><a th:href="@{/login}">Inloggen</a></li>
+        <li sec:authorize-url="/offertes"><a th:href="@{/offertes}">Offertes</a></li>
+        <li sec:authorize-url="/werknemers"><a th:href="@{/werknemers}">Werknemers</a></li>
     </ul>
+    <form method="post" th:action="@{/logout}" sec:authorize="isAuthenticated()">
+        <button><span sec:authentication="name"></span> Uitloggen</button>
+    </form>
 </body>
 </html>

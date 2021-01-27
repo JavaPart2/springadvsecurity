@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Inloggen</title>
+    <link rel="stylesheet" th:href="@{/css/security.css}"></link>
+</head>
+<body>
+    <h1>Inloggen</h1>
+    <form th:action="@{/login}" method="post">
+        <input name="username" required autofocus placeholder="Gebruikersnaam">
+        <input name="password" type="password" required placeholder="Paswoord">
+        <button>Inloggen</button>
+    </form>
+    <div th:if="${param.error} != null" class="fout">Verkeerde gebruikersnaam of paswoord</div>
+</body>
+</html>
